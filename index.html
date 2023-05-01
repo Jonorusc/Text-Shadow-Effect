@@ -7,9 +7,9 @@
       }
       #myText {
         position: absolute;
-        top: 50%;
+        top: 30%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -30%);
         height: 20rem;
         width: 20rem;
         display: grid;
@@ -26,13 +26,21 @@
     <script>
       const text = document.querySelector("#myText");
       document.addEventListener("mousemove", (e) => {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
+        const x = e.clientX;
+        const y = e.clientY;
+        const textX = text.offsetLeft + text.offsetWidth / 2;
+        const textY = text.offsetTop + text.offsetHeight / 2;
+        const distanceX = x - textX;
+        const distanceY = y - textY;
+        const distance = Math.sqrt(
+          distanceX * distanceX + distanceY * distanceY
+        );
+        const maxDistance = 300;
 
         text.style.textShadow = `
-          ${x * 10}px ${y * 10}px 0 #ff00ff,
-          ${x * 20}px ${y * 20}px 0 #00ffff,
-          ${x * 30}px ${y * 30}px 0 #ffff00
+					${(distanceX / maxDistance) * 10}px ${(distanceY / maxDistance) * 10}px ${(distance / maxDistance) * 3}px #ff00ff, 
+					${(distanceX / maxDistance) * 20}px ${(distanceY / maxDistance) * 20}px ${(distance / maxDistance) * 3}px #00ffff,
+          ${(distanceX / maxDistance) * 30}px ${(distanceY / maxDistance) * 30}px ${(distance / maxDistance) * 3}px #ffff00
         `;
       });
     </script>
