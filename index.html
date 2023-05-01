@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background: #f2f2f2;
+      }
+      #myText {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 20rem;
+        width: 20rem;
+        display: grid;
+        place-items: center;
+        background: blueviolet;
+        color: wheat;
+        font-size: 40px;
+        text-shadow: 0 0 10px #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="myText">Hello World!</div>
+    <script>
+      const text = document.querySelector("#myText");
+      document.addEventListener("mousemove", (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+
+        text.style.textShadow = `
+          ${x * 10}px ${y * 10}px 0 #ff00ff,
+          ${x * 20}px ${y * 20}px 0 #00ffff,
+          ${x * 30}px ${y * 30}px 0 #ffff00
+        `;
+      });
+    </script>
+  </body>
+</html>
